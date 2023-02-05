@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  nginx:
+    image: asierlv97/webesp:v3
+    container_name: webesp
+    restart: always
+    ports:
+      - "8080:8080"   # Web Españita
+      - "443:443"     # ssl
+      - "80:80"       # http
+    volumes:
+      - ./www/html:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./certs:/etc/certs
+      - ./logs:/var/log/nginx
+
+#networks:
+#  default:
+#    external:
+#      name: nginx-network
